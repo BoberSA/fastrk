@@ -22,8 +22,16 @@ Butcher Tables was adapted from [TrackerComponentLibrary](https://github.com/USN
 
     pip install fastrk
 
-## Examples
-    TBD
+## Fast example
+
+```python:examples/fast_example.py```
+
+
+## Detailed examples
+
+[Example 0: Propagate spacecraft motion in Circular Restricted Three Body Problem](https://github.com/BoberSA/fastrk/blob/master/examples/ex0_propagate_crtbp.ipynb)
+
+[Example 1: Calculate events in Circular Restricted Three Body Problem](https://github.com/BoberSA/fastrk/blob/master/examples/ex1_calculate_events.ipynb)
 
 ## Core Developer
 Stanislav Bober, [MIEM NRU HSE](https://miem.hse.ru/), [IKI RAS](http://iki.rssi.ru/)

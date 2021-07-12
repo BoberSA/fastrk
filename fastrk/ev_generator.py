@@ -50,7 +50,7 @@ def extract_code(ev, exclude_vars=tuple()):
 
 
 class EventsCodeGen:
-    def __init__(self, events, folder='_events', hash_length=12, exclude_vars=('value',), **jitkwargs):
+    def __init__(self, events, folder='__evcache__', hash_length=12, exclude_vars=('value',), **jitkwargs):
         self.events = events
         self.folder = folder
         self.jitkwargs = jitkwargs if jitkwargs else default_jitkwargs
@@ -86,13 +86,12 @@ class EventsCodeGen:
 
         self.code = text
 
-    def save_py(self, overwrite=False):
+    def save_and_import(self, overwrite=False):
+        if not os.path.exists(self.folder):
+            os.mkdir(self.folder)
         if not self.existed or overwrite:
             with open(self.fpath, 'wt') as f:
                 f.write(self.code)
-            importlib.invalidate_caches()
-        return self
-
-    def import_call_event(self):
+        #importlib.invalidate_caches()
         module = importlib.import_module(f'{self.folder}.{self.fname[:-3]}', '')
         return module.call_event
