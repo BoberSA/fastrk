@@ -29,7 +29,7 @@ class ButcherTable:
     def __str__(self):
         return f'ButcherTable for RK{self.name}'
 
-import bt_6_5_8_M, bt_8_7_13_M, bt_8_9_16
+from . import bt_6_5_8_M, bt_8_7_13_M, bt_8_9_16
 
 BT658M = ButcherTable('658M', bt_6_5_8_M)
 
