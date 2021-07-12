@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="rastrk",
+    name="fastrk",
     version="0.0.1",
     author="Bober S.A.",
     author_email="stas.bober@gmail.com",
@@ -12,7 +12,7 @@ setuptools.setup(
         "FastRK, a generator of fast jit-compiled code for ODE propagation by ERK methods with adaptive step and events",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://bitbucket.org/stas_bober/orbipy",
+    url="https://github.com/BoberSA/fastrk",
     packages=setuptools.find_packages(),
     # package_data={
     #         'fastrk': ['_events'],
