@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="fastrk",
-    version="0.0.2",
+    version="0.0.3",
     author="Bober S.A.",
     author_email="stas.bober@gmail.com",
     description=\
@@ -27,9 +27,10 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=['numpy~=1.19.2',
-                      'numba~=0.51.2',
-                      'sympy~=1.6.2',
+    install_requires=['numpy>=1.19.2',
+                      'numba>=0.51.2',
+                      'sympy>=1.8',
+                      'scipy>=1.2'
                       ],
-    python_requires='>=3.8',
+    python_requires='>=3.7',
 )
