@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="fastrk",
-    version="0.0.3",
+    version="0.0.4",
     author="Bober S.A.",
     author_email="stas.bober@gmail.com",
     description=\
