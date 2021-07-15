@@ -22,11 +22,10 @@ events = [eventX, eventX]
 # generate call_event compiled @cfunc callback
 call_event = EventsCodeGen(events).save_and_import()
 
-#%% constants
+#%% Constants
 L1 = 0.9900289479871328
 mu = 3.001348389698916e-06  # CRTBP constant
 ER = 149600000.0
-maxt = 100
 left  = L1 - 1.4e6/ER
 right = L1 + 1.4e6/ER
 
@@ -66,33 +65,12 @@ print(f'map calculation time: {tp:0.2f} s')
 
 print(f'speedup x {ts/tp:.2f}')
 
-#%%
+#%% Check accuracy
 
 print('||Ms - Mp|| =', np.linalg.norm(Ms - Mp))
 
-#%%
+#%% Plot map
 
 plt.pcolormesh(x, z, Mp.T, shading='auto', cmap='jet')
 plt.colorbar()
 plt.show();
-
-
-
-
-
-
-
-# t0, t1 = 0., 3 * np.pi
-# initial state for halo orbit
-# s0 = np.zeros(6)
-# s0[[0, 2, 4]] = 9.949942666080747733e-01, 4.732924802139452415e-03, -1.973768492871211949e-02
-
-# vy = calc_vy(s0[0], s0[2], 0.1, left, right, 1e-16, crtbp, call_event)
-# print(vy - s0[4])
-
-# integrate CRTBP ODE from t0, s0 to t1
-# arr = rk_prop(crtbp, s0, t0, t1, np.inf, rtol, atol, mc)
-#
-# plt.plot(arr[:, 1], arr[:, 2], 'r')
-# plt.axis('equal')
-# plt.show()
