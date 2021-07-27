@@ -1,7 +1,9 @@
+import unittest
 import numpy as np
+from numba.core.errors import NumbaExperimentalFeatureWarning
+import warnings
 import fastrk as frk
 from model_crtbp import crtbp, crtbp_stm
-import unittest
 
 
 class PropagationTest(unittest.TestCase):
@@ -19,6 +21,8 @@ class PropagationTest(unittest.TestCase):
         self.tables = ("BT8713M", "BT658M", "BT8916")
 
     def test_prop(self):
+        warnings.filterwarnings('ignore', category=NumbaExperimentalFeatureWarning)
+
         for tbl in self.tables:
             module = frk.RKCodeGen(getattr(frk, tbl)).save_and_import()
             rk_prop = module.rk_prop
