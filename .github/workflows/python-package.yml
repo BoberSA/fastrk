@@ -30,11 +30,6 @@ jobs:
         python -m pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
-    - name: Build module
+    - name: Test with unittest
       run: |
-        python -m setup.py bdist_wheel
-        pip install dist/*
-
-    - name: Test with pytest
-      run: |
-        pytest
+        python -m unittest discover -s tests
