@@ -58,8 +58,8 @@ class LongPropagationTest(unittest.TestCase):
             rk_prop = module.rk_prop
             arr = rk_prop(crtbp, self.s0, self.t0, self.t1, np.inf, self.rtol, self.atol, self.mc)
             d = ((arr[-1, 1] - self.earth_x)**2 - arr[-1, 2]**2)**0.5
-            assert d < self.earth_max_dist
+            self.assertTrue(d < self.earth_max_dist, f"dist:{d}")
 
             arr_stm = rk_prop(crtbp_stm, self.s0_stm, self.t0, self.t1, np.inf, self.rtol, self.atol, self.mc)
             d_stm = ((arr_stm[-1, 1] - self.earth_x) ** 2 - arr_stm[-1, 2] ** 2) ** 0.5
-            assert d_stm < self.earth_max_dist
+            self.assertTrue(d_stm < self.earth_max_dist, f"dist:{d_stm}")
