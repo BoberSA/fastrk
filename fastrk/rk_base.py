@@ -28,13 +28,13 @@ MAX_FACTOR = 10  # Maximum allowed increase in a step size
 
 # rk_prop constants
 N_STEPS = 2 ** 13  # 8192, standard array size for rk steps
-N_STEPS_MUL = 2  # Array size multiplicator when array is filled up
-N_STEPS_MAX = 2 ** 21  # 1048576, maximum allowed steps count
+N_STEPS_MUL = 2  # Array size multiplier when array is filled up
+N_STEPS_MAX = 2 ** 24  # 16777216, maximum allowed steps count
 
 # rk_prop_ev constants
 N_EVENTS = 2 ** 10  # 1024, standard events count
-N_EVENTS_MUL = 2  #
-N_EVENTS_MAX = 2 ** 20  # 1048576, maximum allowed events count
+N_EVENTS_MUL = 2  # Array size multiplier when array is filled up
+N_EVENTS_MAX = 2 ** 24  # 16777216, maximum allowed events count
 
 
 def rms_norm(x):
@@ -405,7 +405,7 @@ def rk_prop_ev(fode, s0, t0, t, max_step, rtol, atol,
 
     n_events = N_EVENTS
     ev_n = _terminals.size
-    evvals = np.empty((n_events, ev_n), dtype=s0.dtype)
+    evvals = np.empty((n_steps, ev_n), dtype=s0.dtype)
     counters = np.empty(ev_n, dtype=np.int32)
     evout = np.empty((n_events, 3), dtype=np.int32)
     n_evout = np.zeros(1, dtype=np.int32)
@@ -427,12 +427,13 @@ def rk_prop_ev(fode, s0, t0, t, max_step, rtol, atol,
                 raise RuntimeError('Maximum allowed steps count exceeded')
             tmp = trajectory
             trajectory = _resize_2darray_axis0(trajectory, n_steps)
+            evvals = _resize_2darray_axis0(evvals, n_steps)
 
         trm = event_detector(__call_event, trajectory[i, 0], trajectory[i, 1:], evvals, i,
                              counters, _values, _terminals, _directions, _counts,
                              evout, n_evout)
 
-        if n_evout[0] >= n_events:
+        if n_evout[0] >= n_events - 1:
             n_events *= N_EVENTS_MUL
             if n_steps > N_EVENTS_MAX:
                 raise RuntimeError('Maximum allowed count of event records exceeded')
