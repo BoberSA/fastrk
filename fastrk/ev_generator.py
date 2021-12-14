@@ -4,6 +4,7 @@ import inspect
 import os
 import textwrap
 import re
+import numpy as np
 
 default_jitkwargs = {'nopython': True, 'nogil': True, 'fastmath': True, 'cache': True, 'boundscheck': False}
 
@@ -111,7 +112,8 @@ def extract_code(obj, exclude_vars=tuple(), method='__call__', **jitkwargs):
         if inspect.isclass(value):
             classnames.append(name)
             continue
-        text += f'{name} = {repr(value)}\n'
+        with np.printoptions(precision=16):
+            text += f'{name} = {repr(value)}\n'
     for name, m in modules.items():
         deps += extract_deps(m, name, **jitkwargs)
     for name, f in funcs.items():
@@ -148,7 +150,8 @@ def extract_deps(obj, name_='', **jitkwargs):
             if inspect.isclass(value):
                 #classnames.append(name)
                 continue
-            text += f'{name} = {repr(value)}\n'
+            with np.printoptions(precision=16):
+                text += f'{name} = {repr(value)}\n'
         for name, m in modules.items():
             deps += extract_deps(m, name)
         for name, f in funcs.items():
