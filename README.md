@@ -147,6 +147,9 @@ Output for `AMD Ryzen 7 4700U @ 4GHz`:
 Required modules:
 - [model_crtbp.py](https://github.com/BoberSA/fastrk/blob/master/examples/model_crtbp.py)
 
+#### [Example 2: Custom Embedded Runge-Kutta Method](https://github.com/BoberSA/fastrk/blob/master/examples/ex2_custom_erk_method.ipynb)
+
+
 #### [Parallel (OpenMP) example](https://github.com/BoberSA/fastrk/blob/master/examples/parallel_example.py)
 
 Required modules:
